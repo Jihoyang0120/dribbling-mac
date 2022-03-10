@@ -1,11 +1,17 @@
+.container {
+  background-image: url(https://lazy-note.s3.ap-northeast-2.amazonaws.com/macmiller_dribbble.gif);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+
+}
 
 .main {
-  background-image: url(../image/macmiller_dribbble.gif);
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:20px;'><text y='50%'>😯</text></svg>") 16 0, auto;
-  min-height: 100vh;
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-top: 3.4rem;
 }

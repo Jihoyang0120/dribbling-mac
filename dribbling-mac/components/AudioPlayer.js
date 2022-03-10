@@ -62,27 +62,46 @@ const AudioPlayer = () => {
     setCurrentTime(progressBar.current.value);
   };
 
-  const backThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value - 30);
+  const backTen = () => {
+    progressBar.current.value = Number(progressBar.current.value - 10);
     changeRange();
   };
 
-  const forwardThirty = () => {
-    progressBar.current.value = Number(progressBar.current.value + 30);
+  const forwardTen = () => {
+    progressBar.current.value = Number(progressBar.current.value) + 10;
+    console.log(progressBar.current.value);
     changeRange();
   };
 
   return (
     <>
+      <div className={styles.progressBarContainer}>
+        {/* current time */}
+        <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
+
+        {/* progress bar */}
+        <input
+          type="range"
+          className={styles.progressBar}
+          defaultValue="0"
+          ref={progressBar}
+          onChange={changeRange}
+        />
+
+        {/* duration */}
+        <div className={styles.duration}>
+          {duration && !isNaN(duration) && calculateTime(duration)}
+        </div>
+      </div>
       <div className={styles.audioPlayer}>
         <audio
           ref={audioPlayer}
           src="https://lazy-note.s3.ap-northeast-2.amazonaws.com/Mac_Miller-Knock_Knock.mp3"
           type="audio/mpeg"
         ></audio>
-        <button className={styles.backward} onClick={backThirty}>
+        <button className={styles.backward} onClick={backTen}>
           <BsArrowLeftShort />
-          30
+          10
         </button>
         <button onClick={togglePlayPause} className={styles.playPause}>
           {isPlaying ? (
@@ -91,30 +110,10 @@ const AudioPlayer = () => {
             <FaPlay className={styles.play} />
           )}
         </button>
-        <button className={styles.forward} onClick={forwardThirty}>
-          30
+        <button className={styles.forward} onClick={forwardTen}>
+          10
           <BsArrowRightShort />
         </button>
-      </div>
-      <div className={styles.progressBarContainer}>
-        {/* current time */}
-        <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
-
-        {/* progress bar */}
-        <div>
-          <input
-            type="range"
-            className={styles.progressBar}
-            defaultValue="0"
-            ref={progressBar}
-            onChange={changeRange}
-          />
-        </div>
-
-        {/* duration */}
-        <div className={styles.duration}>
-          {duration && !isNaN(duration) && calculateTime(duration)}
-        </div>
       </div>
     </>
   );
